@@ -188,7 +188,132 @@ MonoBehaviour:
   noiseSampleSize: 30
   scale: 5
   maxHeight: 3
-  textureResolution: 8
+  textureResolution: 32
+  heightTerrainTypes:
+  - threshold: 0.25
+    ColorGradient:
+      serializedVersion: 2
+      key0: {r: 0.07564971, g: 0.44706255, b: 0.9433962, a: 1}
+      key1: {r: 0.16197933, g: 0.612917, b: 0.9811321, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 65535
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
+  - threshold: 0.28
+    ColorGradient:
+      serializedVersion: 2
+      key0: {r: 0.15294118, g: 0.59607846, b: 0.97647065, a: 1}
+      key1: {r: 1, g: 0.869913, b: 0.2783019, a: 1}
+      key2: {r: 1, g: 0.87169206, b: 0.28817174, a: 0}
+      key3: {r: 0.21397442, g: 1, b: 0.033018887, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 11354
+      ctime2: 49120
+      ctime3: 65535
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 4
+      m_NumAlphaKeys: 2
+  - threshold: 0.8
+    ColorGradient:
+      serializedVersion: 2
+      key0: {r: 0.34509805, g: 0.97647065, b: 0.078431375, a: 1}
+      key1: {r: 0.20386234, g: 0.6886792, b: 0.0032484946, a: 1}
+      key2: {r: 0.8679245, g: 0.54827553, b: 0.05322181, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 19994
+      ctime2: 65535
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 3
+      m_NumAlphaKeys: 2
+  - threshold: 1
+    ColorGradient:
+      serializedVersion: 2
+      key0: {r: 0.81568635, g: 0.56078434, b: 0.050980397, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
+      key2: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 0, g: 0, b: 0, a: 0}
+      key4: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0, g: 0, b: 0, a: 0}
+      key6: {r: 0, g: 0, b: 0, a: 0}
+      key7: {r: 0, g: 0, b: 0, a: 0}
+      ctime0: 0
+      ctime1: 4443
+      ctime2: 0
+      ctime3: 0
+      ctime4: 0
+      ctime5: 0
+      ctime6: 0
+      ctime7: 0
+      atime0: 0
+      atime1: 65535
+      atime2: 0
+      atime3: 0
+      atime4: 0
+      atime5: 0
+      atime6: 0
+      atime7: 0
+      m_Mode: 0
+      m_ColorSpace: -1
+      m_NumColorKeys: 2
+      m_NumAlphaKeys: 2
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

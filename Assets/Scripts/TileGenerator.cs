@@ -11,6 +11,9 @@ public class TileGenerator : MonoBehaviour
     public float maxHeight = 1.0f;
     public int textureResolution = 1;
 
+    [Header("Terrain Types")]
+    public TerrainType[] heightTerrainTypes;
+
     private MeshRenderer tileMeshRenderer;
     private MeshFilter tileMeshFilter;
     private MeshCollider tileMeshCollider;
@@ -30,7 +33,7 @@ public class TileGenerator : MonoBehaviour
         // Generate a new height map
         float[,] heightMap = NoiseGenerator.GenerateNoiseMap(noiseSampleSize, scale);
 
-        float[,] hdHeightMap = NoiseGenerator.GenerateNoiseMap(noiseSampleSize, scale, textureResolution);
+        float[,] hdHeightMap = NoiseGenerator.GenerateNoiseMap(noiseSampleSize - 1, scale, textureResolution);
 
         Vector3[] verts = tileMeshFilter.mesh.vertices;
 
@@ -51,9 +54,17 @@ public class TileGenerator : MonoBehaviour
         tileMeshCollider.sharedMesh = tileMeshFilter.mesh;
         
         // Create the height map texture
-        Texture2D heightMapTexture = TextureBuilder.BuildTexture(hdHeightMap);
+        Texture2D heightMapTexture = TextureBuilder.BuildTexture(hdHeightMap, heightTerrainTypes);
 
         // Apply the height map texture to the MeshRenderer
         tileMeshRenderer.material.mainTexture = heightMapTexture;
     }
+}
+
+[System.Serializable]
+public class TerrainType
+{
+    [Range(0.0f, 1.0f)]
+    public float threshold;
+    public Gradient ColorGradient;
 }
