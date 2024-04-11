@@ -18,6 +18,12 @@ public class TileGenerator : MonoBehaviour
     private MeshFilter tileMeshFilter;
     private MeshCollider tileMeshCollider;
 
+    [Header("Waves")]
+    public Wave[] waves;
+
+    [Header("Curves")]
+    public AnimationCurve heightCurve;
+
     private void Start()
     {
         // Get the tile components
@@ -31,9 +37,10 @@ public class TileGenerator : MonoBehaviour
     void GenerateTile()
     {
         // Generate a new height map
-        float[,] heightMap = NoiseGenerator.GenerateNoiseMap(noiseSampleSize, scale);
+        float[,] heightMap = NoiseGenerator.GenerateNoiseMap(noiseSampleSize, scale, waves);
 
-        float[,] hdHeightMap = NoiseGenerator.GenerateNoiseMap(noiseSampleSize - 1, scale, textureResolution);
+        // Generate a hd height map to apply as a texture
+        float[,] hdHeightMap = NoiseGenerator.GenerateNoiseMap(noiseSampleSize - 1, scale, waves, textureResolution);
 
         Vector3[] verts = tileMeshFilter.mesh.vertices;
 
@@ -43,7 +50,7 @@ public class TileGenerator : MonoBehaviour
             {
                 int index = (x * noiseSampleSize) + z;
 
-                verts[index].y = heightMap[x, z] * maxHeight;
+                verts[index].y = heightCurve.Evaluate(heightMap[x, z]) * maxHeight;
             }
         }
 
