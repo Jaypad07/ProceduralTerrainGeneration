@@ -6,7 +6,7 @@ public class NoiseGenerator
 {
     // Generates a new noise map based on a number of parameters
     // returns a 2D float array
-    public static float[,] GenerateNoiseMap(int noiseSampleSize, float scale, Wave[] waves, int resolution = 1)
+    public static float[,] GenerateNoiseMap(int noiseSampleSize, float scale, Wave[] waves, Vector2 offset, int resolution = 1)
     {
         float[,] noiseMap = new float[noiseSampleSize * resolution, noiseSampleSize * resolution];
 
@@ -14,8 +14,8 @@ public class NoiseGenerator
         {
             for (int y = 0; y < noiseSampleSize * resolution; y++)
             {
-                float samplePosX = (float) x / scale / (float) resolution;
-                float samplePosY = (float) y / scale / (float) resolution;
+                float samplePosX = ((float) x / scale / (float) resolution) + offset.y;
+                float samplePosY = ((float) y / scale / (float) resolution) + offset.x;
 
                 float noise = 0.0f;
                 float normalization = 0.0f;
@@ -30,6 +30,24 @@ public class NoiseGenerator
 
                 noiseMap[x, y] = noise;
 
+            }
+        }
+
+        return noiseMap;
+    }
+
+    public static float[,] GenerateUniformNoiseMap(int size, float vertexOffset, float maxVertexDistance)
+    {
+        float[,] noiseMap = new float[size, size];
+
+        for (int x = 0; x < size; x++)
+        {
+            float xSample = x + vertexOffset;
+            float noise = Mathf.Abs(xSample) / maxVertexDistance;
+
+            for (int z = 0; z < size; z++)
+            {
+                noiseMap[x, size - z - 1] = noise;
             }
         }
 
