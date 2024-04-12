@@ -7,7 +7,8 @@ public enum TerrainVisualization
 {
     Height,
     Heat,
-    Moisture
+    Moisture,
+    Biome
 }
 
 public class TileGenerator : MonoBehaviour
@@ -41,6 +42,8 @@ public class TileGenerator : MonoBehaviour
 
     private MeshGenerator _meshGenerator;
     private MapGenerator _mapGenerator;
+
+    private TerrainData[,] datamap;
 
     private void Start()
     {
@@ -88,6 +91,9 @@ public class TileGenerator : MonoBehaviour
         float[,] heatMap = GenerateHeatMap(heightMap);
         float[,] moistureMap = GenerateMoistureMap(heightMap);
 
+        TerrainType[,] heatTerrainTypeMap = TextureBuilder.CreateTerrainTypeMap(heatMap, heatTerrainTypes);
+        TerrainType[,] moistureTerrainTypeMap = TextureBuilder.CreateTerrainTypeMap(moistureMap, moistureTerrainTypes);
+
         switch (visualizationType)
         {
             case TerrainVisualization.Height:
@@ -99,10 +105,33 @@ public class TileGenerator : MonoBehaviour
             case TerrainVisualization.Moisture:
                 tileMeshRenderer.material.mainTexture = TextureBuilder.BuildTexture(moistureMap, moistureTerrainTypes);
                 break;
+            case TerrainVisualization.Biome:
+                tileMeshRenderer.material.mainTexture = BiomeBuilder.instance.BuildTexture(heatTerrainTypeMap, moistureTerrainTypeMap);
+                break;
         }
+        
+        CreateDataMap(heatTerrainTypeMap, moistureTerrainTypeMap);
+        TreeSpawner.instance.Spawn(datamap);
+    }
 
-        // float[,] moistureMap = GenerateMoistureMap(heightMap);
-        // tileMeshRenderer.material.mainTexture = TextureBuilder.BuildTexture(moistureMap, moistureTerrainTypes);
+    void CreateDataMap(TerrainType[,] heatTerrainTypeMap, TerrainType[,] moistureTerrainTypeMap)
+    {
+        datamap = new TerrainData[noiseSampleSize, noiseSampleSize];
+        Vector3[] verts = tileMeshFilter.mesh.vertices;
+
+        for (int x = 0; x < noiseSampleSize; x++)
+        {
+            for (int z = 0; z < noiseSampleSize; z++)
+            {
+                TerrainData data = new TerrainData();
+                data.position = transform.position + verts[(x * noiseSampleSize) + z];
+                data.heatTerrainType = heatTerrainTypeMap[x, z];
+                data.moistureTerrainType = moistureTerrainTypeMap[x, z];
+                data.biome = BiomeBuilder.instance.GetBiome(data.heatTerrainType, data.moistureTerrainType);
+
+                datamap[x, z] = data;
+            }
+        }
     }
 
     // Generates a new heat map
@@ -146,7 +175,16 @@ public class TileGenerator : MonoBehaviour
 [System.Serializable]
 public class TerrainType
 {
+    public int index;
     [Range(0.0f, 1.0f)]
     public float threshold;
     public Gradient ColorGradient;
+}
+
+public class TerrainData
+{
+    public Vector3 position;
+    public TerrainType heatTerrainType;
+    public TerrainType moistureTerrainType;
+    public Biome biome;
 }

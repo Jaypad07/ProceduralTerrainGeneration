@@ -319,6 +319,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2078967683}
   - component: {fileID: 2078967682}
+  - component: {fileID: 2078967684}
+  - component: {fileID: 2078967685}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -339,8 +341,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 3666482282380229972, guid: fd81409c186599747a68352a319eeaaf, type: 3}
-  numX: 10
-  numZ: 10
+  numX: 5
+  numZ: 5
 --- !u!4 &2078967683
 Transform:
   m_ObjectHideFlags: 0
@@ -356,6 +358,71 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2078967684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078967681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50d9ffbc9f0d6041a3f733f00e0ca9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  biomes:
+  - type: 0
+    color: {r: 1, g: 0.92589796, b: 0, a: 0}
+    spawnPrefabs: 1
+    spawnablePrefabs:
+    - {fileID: 4233744891093208339, guid: 448ca311bbbc57449920225d3a0966d9, type: 3}
+    - {fileID: 7760352685491730090, guid: f95fdec0f56588d499950ffd759c60ac, type: 3}
+    density: 0.2
+  - type: 1
+    color: {r: 0, g: 0.84300804, b: 1, a: 0}
+    spawnPrefabs: 0
+    spawnablePrefabs: []
+    density: 0
+  - type: 2
+    color: {r: 0.9607843, g: 0.5913345, b: 0, a: 0}
+    spawnPrefabs: 1
+    spawnablePrefabs:
+    - {fileID: 3488813639397812340, guid: 1190b8afeaab9434e898fa66b34cea49, type: 3}
+    - {fileID: 26130570007344906, guid: e36219bc59c4fe846a6b8ccc1aa06626, type: 3}
+    density: 0.2
+  - type: 3
+    color: {r: 0.3868715, g: 0.9716981, b: 0.050418302, a: 0}
+    spawnPrefabs: 1
+    spawnablePrefabs:
+    - {fileID: 3376320594599554087, guid: c00a66a3290e4eb44a9d93862eb30886, type: 3}
+    - {fileID: 1110766893190237959, guid: a0798e457b5ceef4580fa94c8a6e5dcf, type: 3}
+    density: 1
+  - type: 4
+    color: {r: 0.19398111, g: 0.6132076, b: 0, a: 0}
+    spawnPrefabs: 1
+    spawnablePrefabs:
+    - {fileID: 3488813639397812340, guid: 1190b8afeaab9434e898fa66b34cea49, type: 3}
+    - {fileID: 3376320594599554087, guid: c00a66a3290e4eb44a9d93862eb30886, type: 3}
+    - {fileID: 1110766893190237959, guid: a0798e457b5ceef4580fa94c8a6e5dcf, type: 3}
+    density: 2
+  tableRows:
+  - tableColumns: 00000000000000000100000001000000
+  - tableColumns: 02000000020000000300000001000000
+  - tableColumns: 04000000040000000300000003000000
+  - tableColumns: 04000000040000000300000003000000
+--- !u!114 &2078967685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078967681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8e390b2c0dc0f4999fd15519ef1bbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxTreeOffset: 0.3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
